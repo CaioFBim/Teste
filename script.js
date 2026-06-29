@@ -1,105 +1,127 @@
-/* ========================================== */
-/* 1. LÓGICA DA TELA DE NOME E DESFOQUE       */
-/* ========================================== */
-const camadaBloqueio = document.getElementById('camada-bloqueio');
-const conteudoSite = document.getElementById('conteudo-site');
-const btnEntrar = document.getElementById('btn-entrar');
-const inputNome = document.getElementById('input-nome');
-const spanNome = document.getElementById('span-nome');
+/* ======================================================= */
+/* MAPEAMENTO E SELEÇÃO DE ELEMENTOS DO HTML               */
+/* ======================================================= */
+const btnSaibaMais = document.getElementById("bntSaibamais");
+const btnQuiz = document.getElementById("btnQuiz");
+const divInformacoes = document.getElementById("informacoes");
+const divQuizz = document.getElementById("quizz");
 
-btnEntrar.addEventListener('click', () => {
-    const nome = inputNome.value.trim();
-    if (nome !== "") {
-        spanNome.textContent = nome;
-        // Remove a camada de bloqueio e o efeito de desfoque
-        camadaBloqueio.style.display = 'none';
-        conteudoSite.classList.remove('desfocado');
-        conteudoSite.style.pointerEvents = 'auto';
+const telaNome = document.getElementById("tela-nome");
+const mainConteudo = document.getElementById("conteudo-principal");
+const inputNome = document.getElementById("input-nome");
+const spanNome = document.getElementById("nome-usuario");
+
+const btnModoEscuro = document.getElementById("btn-modo-escuro");
+const btnAumentar = document.getElementById("btn-aumentar");
+const btnDiminuir = document.getElementById("btn-diminuir");
+
+// Mantém o registro do tamanho padrão da fonte em porcentagem (100%)
+let tamanhoFonte = 100;
+
+/* ======================================================= */
+/* 1. LÓGICA DE LOGIN (NOME DO USUÁRIO E RETIRADA DO BLUR) */
+/* ======================================================= */
+document.getElementById("btn-entrar").addEventListener("click", function() {
+    const nomeDigitado = inputNome.value.trim();
+    
+    if (nomeDigitado !== "") {
+        // Altera o texto "visitante" pelo nome digitado
+        spanNome.textContent = nomeDigitado;
+        // Apaga a caixa de bloqueio e remove o desfoque (blur) do site
+        telaNome.style.display = "none";
+        mainConteudo.classList.remove("desfocado");
     } else {
-        alert("Por favor, digite seu nome para continuar.");
+        alert("Por favor, digite o seu nome para continuar.");
     }
 });
 
-/* ========================================== */
-/* 2. MODO ESCURO E FONTES                    */
-/* ========================================== */
-const btnDark = document.getElementById('btn-dark');
-const btnAumentar = document.getElementById('btn-aumentar');
-const btnDiminuir = document.getElementById('btn-diminuir');
-let tamanhoFonte = 18; // Tamanho base em pixels
+/* ======================================================= */
+/* 2. LÓGICA DO BOTÃO SANFONA (MOSTRAR E RE-ESCONDER)      */
+/* ======================================================= */
 
-btnDark.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    btnDark.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-});
-
-btnAumentar.addEventListener('click', () => {
-    if (tamanhoFonte < 30) {
-        tamanhoFonte += 2;
-        document.querySelector('.container').style.fontSize = tamanhoFonte + 'px';
-    }
-});
-
-btnDiminuir.addEventListener('click', () => {
-    if (tamanhoFonte > 14) {
-        tamanhoFonte -= 2;
-        document.querySelector('.container').style.fontSize = tamanhoFonte + 'px';
-    }
-});
-
-/* ========================================== */
-/* 3. BOTÕES MOSTRAR/OCULTAR (TEXTO E QUIZ)   */
-/* ========================================== */
-const btnSaibaMais = document.getElementById('bntSaibamais');
-const btnQuiz = document.getElementById('btnQuiz');
-const divInfo = document.getElementById('informacoes');
-const divQuiz = document.getElementById('secao-quiz');
-
-btnSaibaMais.addEventListener('click', () => {
-    const estaEscondido = divInfo.classList.contains('escondido');
-
+// Clique no botão "Saiba mais"
+btnSaibaMais.addEventListener("click", function() {
+    // Verifica se a div está invisível
+    const estaEscondido = divInformacoes.classList.contains("escondido");
+    
     if (estaEscondido) {
-        divInfo.classList.remove('escondido');
-        divQuiz.classList.add('escondido');
+        // Se estava oculta: mostra ela, esconde o quiz e troca os textos internos
+        divInformacoes.classList.remove("escondido");
+        divQuizz.classList.add("escondido");
         btnSaibaMais.textContent = "Mostrar menos";
         btnQuiz.textContent = "Responder Quiz"; // Reseta o outro botão
     } else {
-        divInfo.classList.add('escondido');
+        // Se ela já estava visível: fecha o bloco e volta o texto normal
+        divInformacoes.classList.add("escondido");
         btnSaibaMais.textContent = "Saiba mais";
     }
 });
 
-btnQuiz.addEventListener('click', () => {
-    const estaEscondido = divQuiz.classList.contains('escondido');
-
+// Clique no botão "Responder Quiz"
+btnQuiz.addEventListener("click", function() {
+    const estaEscondido = divQuizz.classList.contains("escondido");
+    
     if (estaEscondido) {
-        divQuiz.classList.remove('escondido');
-        divInfo.classList.add('escondido');
+        // Se estava oculta: mostra o quiz, esconde o texto e altera as strings
+        divQuizz.classList.remove("escondido");
+        divInformacoes.classList.add("escondido");
         btnQuiz.textContent = "Ocultar Quiz";
         btnSaibaMais.textContent = "Saiba mais"; // Reseta o outro botão
     } else {
-        divQuiz.classList.add('escondido');
+        // Se já estava visível: fecha o bloco do quiz e restaura o nome original
+        divQuizz.classList.add("escondido");
         btnQuiz.textContent = "Responder Quiz";
     }
 });
 
-/* ========================================== */
-/* 4. VERIFICAÇÃO DO QUIZ                     */
-/* ========================================== */
+/* ======================================================= */
+/* 3. LÓGICA DE ACESSIBILIDADE (MODO ESCURO E TONTES)      */
+/* ======================================================= */
+
+// Alternador de modo claro / escuro
+btnModoEscuro.addEventListener("click", function() {
+    // O toggle liga ou desliga a classe de maneira automática
+    document.body.classList.toggle("modo-escuro");
+    
+    // Troca o emoji do botão de acordo com a situação visual
+    if (document.body.classList.contains("modo-escuro")) {
+        btnModoEscuro.textContent = "☀️";
+    } else {
+        btnModoEscuro.textContent = "🌙";
+    }
+});
+
+// Aumenta a escala da fonte global do site em 10%
+btnAumentar.addEventListener("click", function() {
+    if (tamanhoFonte < 150) { // Trava de segurança para não quebrar o design
+        tamanhoFonte += 10;
+        mainConteudo.style.fontSize = tamanhoFonte + "%";
+    }
+});
+
+// Reduz a escala da fonte global do site em 10%
+btnDiminuir.addEventListener("click", function() {
+    if (tamanhoFonte > 80) { // Trava de segurança para não sumir com o texto
+        tamanhoFonte -= 10;
+        mainConteudo.style.fontSize = tamanhoFonte + "%";
+    }
+});
+
+/* ======================================================= */
+/* 4. VERIFICAÇÃO DO QUIZ (SEU CÓDIGO ORIGINAL INTEGRAIS)  */
+/* ======================================================= */
 function verificar() {
     const resposta = document.querySelector('input[name="q1"]:checked');
-    const resultado = document.getElementById("resultado-quiz");
+    const resultado = document.getElementById("resultado");
 
     if (!resposta) {
-        resultado.innerHTML = "⚠️ Escolha uma alternativa.";
+        resultado.innerHTML = "Escolha uma alternativa.";
         return;
     }
 
     if (resposta.value === "c") {
-        resultado.innerHTML = "✅ Correto! Você entende de sustentabilidade.";
-        resultado.style.color = "green";
+        resultado.innerHTML = "Correto!";
     } else {
-        resultado.innerHTML = "❌ Incorreto. A produção sustentável foca no futuro (Letra C).";
-        resultado.style.color = "red";
+        resultado.innerHTML = "Resposta incorreta. A alternativa correta é a letra C.";
     }
 }
