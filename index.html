@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produção sustentável</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main>
+    <div class="container">
+      <h1>Agro forte, para um futuro sustentável</h1>
+      <p>Olá, seja bem-vindo!<br> Aqui você vai aprender um pouco mais sobre produção e preservação do campo.</p>
+      
+      <button id="bntSaibamais">Saiba mais</button>
+      <button id="btnQuiz">Responder Quiz</button>
+
+      <div id="informacoes" class="escondido">
+        <img src="imagens/agro.png" class="img" alt="">
+        <h2>O que é o agronegócio?</h2>
+        <p>São várias atividades conectadas que vão desde a produção até a matéria prima, começando no preparo da terra, plantio, colheita e o tranporte, passando pela indústria e a comercialização até chegar ao consumidor. Ele também é essencial para a economia, gerando emprego e levando alimento para todos os lugares.</p>
+        
+        <h2>O que é produção sustentável?</h2>
+        <p>Produzir alimentos de forma consiente, tendo cuidade com o manejo do solo, da água e das florestas. Com a preucupação e o cuidado com as proxímas gerações, que continuaram ultilizando esse solo.</p>
+        
+        <h2>Como o agronegócio preserva o meio ambiente?</h2>
+        <p>Conservação do solo: ultilizar o plantio no solo ápos uma colheita, para aproveitar os nutrientes da terra, fazendo de maneira sustentável e evitando erosões.</p>
+        <p>Uso consciente da água: com o avanço de técnologias, como a irrigação progamada, que ajuda a ultilizarmos a água de forma mais eficíente, evitando desperdíciose aplicando-a no momento certo para as platas. </p>
+        <p>Preservação das florestas: a maioria dos produtores rurais têm consciênciada importância da natureza, mantendo reservas de mata e protegendo as nascentes.</p>
+        <p>Redução de desperdício: o uso da tecnologia nas colheitas melhorou batante, reduzindo perdas de grãos, aproveitando melhor os recursos naturais e evitando danos ao solo.</p>
+        
+        <h2>Tecnologia do campo</h2>
+        <p>Drones: eles ajudam no monitoramento das platações, fazendo o crontrole de doenças, pragas, crecimentodas plantas e a aplicação de insumos na lavoura.</p>
+        <p>Irrigação inteligente: são ultilizados sensores que acionam apenas quando nescessário, diminuindo o desperdício de água.</p>
+        <p>Agricultura de precisão: ultiliza tecnologias como GPS, sensores e programas de computador para monitorar a lavoura, realizar a aplicação de fertilizantes e fazer a irrigação de água na dose e no local certo.</p>
+      </div>
+
+      <div id="secao-quiz" class="escondido">
+        <h2>Teste seus conhecimentos!</h2>
+        <p><strong>1. Qual o objetivo de um agronegócio sustentável?</strong></p>
+
+        <label>
+            <input type="radio" name="q1" value="a">
+            a) Aumentar a produção pensando só em lucrar mais.
+        </label><br>
+
+        <label>
+            <input type="radio" name="q1" value="b">
+            b) Usar o máximo de recursos sem se preocupar com os impactos.
+        </label><br>
+
+        <label>
+            <input type="radio" name="q1" value="c">
+            c) Produzir respeitando o meio ambiente e garantir recursos para o futuro.
+        </label><br>
+
+        <label>
+            <input type="radio" name="q1" value="d">
+            d) Evitar qualquer tipo de produção no campo.
+        </label><br><br>
+
+        <button type="button" onclick="verificar()">Verificar Resposta</button>
+
+        <p id="resultado"></p>
+      </div>
+
+    </div>
+  </main>  
+  
+  <script src="script.js"></script>
+</body>
+</html>
