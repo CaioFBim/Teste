@@ -1,26 +1,25 @@
-/* ======================================================= */
-/* ESTILOS ORIGINAIS DO SEU SITE (MANTIDOS 100% IGUAIS)    */
-/* ======================================================= */
+/* Estilos originais que enviou */
 body{
-  background-color: rgb(179, 255, 58);
-color: rgb(6, 83, 9);
-margin: 0;
-padding: 20px;
-min-height: 100vh;
-max-width: 1400px;
-margin: auto;
+    background-color: rgb(179, 255, 58);
+    color: rgb(6, 83, 9);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: auto;
 }
 p{
     text-align: center;
     font-weight: 700;
 }
-    h1{
-        text-align: center;
-    }
-    .img{
+h1{
+    text-align: center;
+}
+.img{
     width: 350px;
     max-width: 100%;
     display: block;
+    margin: 0 auto; /* Ajuda a centrar a imagem */
 }
 .container{
     background-color: beige;
@@ -30,59 +29,68 @@ p{
     border-radius: 20px;
 }
 
-/* ======================================================= */
-/* ADIÇÕES EXCLUSIVAS PARA AS NOVAS FUNCIONALIDADES        */
-/* ======================================================= */
+/* --- NOVAS FUNCIONALIDADES --- */
 
-/* Classe para sumir com os blocos de texto e quiz */
+/* Classe para ocultar secções */
 .escondido {
     display: none;
 }
 
-/* Aplica o desfoque nos elementos de fundo */
+/* Efeito de desfoque inicial */
 .desfocado {
     filter: blur(8px);
-    pointer-events: none; /* Impede cliques no fundo enquanto estiver bloqueado */
+    pointer-events: none; 
 }
 
-/* Fixa os botões de acessibilidade no topo direito da página */
+/* Botões do topo (Acessibilidade) */
 .controles {
     position: fixed;
     top: 10px;
     right: 10px;
     z-index: 1001;
 }
+.controles button {
+    padding: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
-/* Tela preta transparente cobrindo 100% da janela para centralizar o login */
+/* Tela escura para inserir o nome */
 #tela-nome {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 2000;
 }
-
-/* Estilo básico e limpo para a caixinha branca onde o usuário digita o nome */
 .caixa-nome {
     background-color: white;
-    padding: 25px;
+    padding: 30px;
     border-radius: 10px;
     text-align: center;
     color: black;
 }
+.caixa-nome input {
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 80%;
+}
+.caixa-nome button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
 
-/* ======================================================= */
-/* CONFIGURAÇÃO DO MODO ESCURO                             */
-/* ======================================================= */
-/* Quando o body receber a classe 'modo-escuro', as cores invertem */
+/* Modo Escuro */
 body.modo-escuro {
     background-color: #121212;
     color: #71E86B;
 }
-
 body.modo-escuro .container {
-    background-color: #1e1e1e; /* Escurece o container beige */
+    background-color: #1e1e1e; 
+    color: white;
 }
